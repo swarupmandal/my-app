@@ -1,4 +1,4 @@
-package com.swa.app.domain;
+package org.hibernate.tutorial.domain;
 
 import java.util.Date;
 
