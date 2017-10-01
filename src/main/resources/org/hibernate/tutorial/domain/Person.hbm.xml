@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.hibernate.tutorial.domain">
+
+	<class name="Person" table="person">
+		<id name="id" column="person_id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="age"  column="age"></property>
+		<property name="firstName"></property>
+		<property name="lastName"></property>
+	</class>
+
+</hibernate-mapping>

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Event {
 
 	public Event() {
-		
+		System.out.println("EVENT OBJECT CREATED...");
 	}
 	
 	private Long id;
