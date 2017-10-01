@@ -9,9 +9,9 @@ public class HibernateUtil {
 		System.out.println("SESSION_FACTORY OBJ CREATED...");
 	}
 
-	public static final SessionFactory SESSION_FACTORY = buildSessionFactory();
+	private static final SessionFactory SESSION_FACTORY = buildSessionFactory();
 	
-	public static SessionFactory buildSessionFactory(){
+	private static SessionFactory buildSessionFactory(){
 		try {
 			return new Configuration().configure().buildSessionFactory();
 		} catch (Exception e) {
