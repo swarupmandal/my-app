@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.swa.app.domain">
+
+	<class name="Event" table="events">
+		<id name="id" column="event_id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="date" type="timestamp" column="event_date"></property>
+		<property name="title" column="event_title"></property>
+	</class>
+
+</hibernate-mapping>
