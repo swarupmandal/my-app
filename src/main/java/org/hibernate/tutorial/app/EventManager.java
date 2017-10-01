@@ -18,8 +18,8 @@ public class EventManager {
 
 		EventManager eventManager = new EventManager();
 		if (args[0].equals("store")) {
-			eventManager.createAndStoreEvent("Cricket", new Date());
-			eventManager.createAndStoreEvent("Football", new Date());
+			eventManager.createAndStoreEvent("Swimming", new Date());
+			eventManager.createAndStoreEvent("Kabaddi", new Date());
 		}
 		
 		if (args[0].equals("list")) {
