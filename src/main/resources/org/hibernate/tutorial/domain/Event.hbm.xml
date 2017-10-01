@@ -3,7 +3,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 
-<hibernate-mapping package="com.swa.app.domain">
+<hibernate-mapping package="org.hibernate.tutorial.domain">
 
 	<class name="Event" table="events">
 		<id name="id" column="event_id">
