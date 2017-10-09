@@ -3,3 +3,5 @@
 # Run as comd using maven : mvn exec:java -Dexec.mainClass="org.hibernate.tutorial.app.EventManager" -Dexec.args="store"
 
 # Run HbSql : mvn exec:java -Dexec.mainClass="org.hsqldb.Server" -Dexec.args="-database.0 file:target/data/tutorial"
+
+#
