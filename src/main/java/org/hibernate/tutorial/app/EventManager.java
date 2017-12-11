@@ -17,14 +17,14 @@ public class EventManager {
 	public static void main(String[] args) {
 
 		EventManager eventManager = new EventManager();
-		if (args[0].equals("store")) {
-			eventManager.createAndStoreEvent("Swimming", new Date());
-			eventManager.createAndStoreEvent("Kabaddi", new Date());
-		}
+		//if (args[0].equals("store")) {
+			eventManager.createAndStoreEvent("Cricket", new Date());
+			//eventManager.createAndStoreEvent("Kabaddi", new Date());
+		//}
 		
-		if (args[0].equals("list")) {
+		//if (args[0].equals("list")) {
 			eventManager.listEvent();
-		}
+		//}
 		
 		HibernateUtil.getSessionFactory().close();
 	}
@@ -32,7 +32,7 @@ public class EventManager {
 	private void createAndStoreEvent(String title, Date date) {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		session.getTransaction().begin();
 
 		Event event = new Event();
 		event.setTitle(title);
@@ -43,13 +43,12 @@ public class EventManager {
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	private List<Event> listEvent(){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		session.getTransaction().begin();
 		
 		List<Event> events = session.createQuery("from Event").list();
-		
-		System.out.println("List Size >>> >> > " +events.size());
 		
 		for(Event e : events){
 			System.out.println("ID > " + e.getId() + " Title > " + e.getTitle() + " Date > " + e.getDate());
@@ -60,8 +59,5 @@ public class EventManager {
 		return events;
 		
 	}
-	
-	
-	
 
 }
