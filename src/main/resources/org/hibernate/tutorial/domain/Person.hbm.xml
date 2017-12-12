@@ -11,8 +11,20 @@
 		</id>
 
 		<property name="age"  column="age"></property>
-		<property name="firstName"></property>
-		<property name="lastName"></property>
+		<property name="firstname" column="first_name"></property>
+		<property name="lastname" column="last_name"></property>
+		
+		<set name="eventList" table="person_event">
+			<key column="person_id"></key>
+			<many-to-many column="event_id" class="Event"/>
+		</set>
+		
+		<!-- <list name="eventList" table="person_event">
+			<key column="person_id"></key>
+			<list-index column="event_id" base="0"></list-index>
+			<many-to-many class="Event"/>
+		</list> -->
+		
 	</class>
 
 </hibernate-mapping>

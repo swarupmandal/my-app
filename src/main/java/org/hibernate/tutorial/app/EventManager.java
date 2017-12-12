@@ -3,8 +3,12 @@ package org.hibernate.tutorial.app;
 import java.util.Date;
 import java.util.List;
 
+import javax.print.attribute.standard.PresentationDirection;
+import javax.transaction.Transaction;
+
 import org.hibernate.Session;
 import org.hibernate.tutorial.domain.Event;
+import org.hibernate.tutorial.domain.Person;
 import org.hibernate.tutorial.util.HibernateUtil;
 
 public class EventManager {
@@ -17,14 +21,25 @@ public class EventManager {
 	public static void main(String[] args) {
 
 		EventManager eventManager = new EventManager();
-		//if (args[0].equals("store")) {
+		/*if (args[0].equals("store")) {
 			eventManager.createAndStoreEvent("Cricket", new Date());
-			//eventManager.createAndStoreEvent("Kabaddi", new Date());
-		//}
+			eventManager.createAndStoreEvent("Kabaddi", new Date());
+		}
 		
-		//if (args[0].equals("list")) {
+		if (args[0].equals("list")) {
 			eventManager.listEvent();
-		//}
+		}*/
+		
+		//eventManager.createAndStoreEvent("Cricket", new Date());
+		//eventManager.createAndStoreEvent("Kabaddi", new Date());
+		//eventManager.listEvent();
+		
+		
+		/*eventManager.storePerson("Mr. C", "mAx", 22);
+		eventManager.storePerson("Mr. D", "dOnald", 23);
+		eventManager.getPersonList();*/
+		
+		eventManager.addPersonToEvent(1l, 1l);
 		
 		HibernateUtil.getSessionFactory().close();
 	}
@@ -59,5 +74,49 @@ public class EventManager {
 		return events;
 		
 	}
+	
+	
+	private void storePerson(String firstName, String lastName, int age) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		
+		Person person = new Person();
+		person.setFirstname(firstName);
+		person.setLastname(lastName);
+		person.setAge(age);
+		
+		session.save(person);
+		
+		session.getTransaction().commit();
+		
+	}
+	
+	private List<Person> getPersonList(){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		
+		List<Person> list = session.createQuery("from Person").getResultList();
+		for(Person p : list){
+			System.out.println("ID > " + p.getId() + " First Name > " + p.getFirstname() + " Last Name > " + p.getLastname() + " Age > " + p.getAge());
+		}
+		
+		session.getTransaction().commit();
+		return list;
+	}
+	
 
+	private void addPersonToEvent(Long personId, Long eventId) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		
+		Person person = session.load(Person.class, personId);
+		Event event = session.load(Event.class, eventId);
+		
+		person.getEventList().add(event);
+		
+		session.getTransaction().commit();
+		
+	}
 }
